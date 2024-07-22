@@ -93,7 +93,30 @@
 
             <button class="btn btn-outline-danger my-3" onclick="deleteAll()">Delete All</button>
             <button class="btn btn-outline-danger my-3" onclick="deleteFirst()">Delete First</button>
-            <button class="btn btn-outline-danger my-3" onclick="deleteAny()">Delete Any</button>
+            
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-danger my-3" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                Delete Any
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="number" id="itemNo2" class="form-control my-2" placeholder="Item Number">
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="deleteAny()">Save changes</button>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
         
     </div>
@@ -160,6 +183,23 @@
             let deleted = confirm('Are you sure?')
             if (deleted){
                 allTodos = []
+                displayTodos()
+            }
+        }
+
+        function deleteFirst(){
+            let deleted = confirm('Are you sure?')
+            if (deleted){
+                allTodos.shift()
+                displayTodos()
+                }
+        }
+
+        function deleteAny(){
+            let item_num = Number(itemNo2.value) - 1
+            let deleted = confirm('Are you sure?')
+            if (deleted){
+                allTodos.splice(item_num, 1)
                 displayTodos()
             }
         }
